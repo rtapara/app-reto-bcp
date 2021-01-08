@@ -24,6 +24,10 @@ namespace app_reto_bcp.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Obtener todos los tipos de cambio disponibles
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<ExchangeRate> Get() {
 
@@ -33,6 +37,13 @@ namespace app_reto_bcp.Controllers
 
         }
 
+        /// <summary>
+        /// Obtener el tipo de cambio de una moneda origen y destino
+        /// </summary>
+        /// <param name="monto">Suma a cambiar</param>
+        /// <param name="monedaOrigen">Moneda Origen</param>
+        /// <param name="monedaDestino">Moneda Destino</param>
+        /// <returns></returns>
         [HttpGet("exchange-money/{monto}/{monedaOrigen}/{monedaDestino}")]
         public async Task<ResponseExchangeRate> ExchangeRate(double monto, string monedaOrigen, string monedaDestino) {
             ResponseExchangeRate response = new ResponseExchangeRate();
@@ -80,6 +91,11 @@ namespace app_reto_bcp.Controllers
             return response;
         }
 
+        /// <summary>
+        /// Agregar un tipo de cambio
+        /// </summary>
+        /// <param name="tipoCambio"> Entidad de tipo de cambio</param>
+        /// <returns></returns>
         [HttpPost("add")]
         public async Task<ResponseMessage> Add([FromBody] ExchangeRate tipoCambio) {
 
@@ -117,6 +133,11 @@ namespace app_reto_bcp.Controllers
 
         }
 
+        /// <summary>
+        /// Modificar un tipo de cambio
+        /// </summary>
+        /// <param name="tipoCambio"> Entidad de tipo de cambio a modificar</param>
+        /// <returns></returns>
         [HttpPost("update")]
         public async Task<ResponseMessage> Edit([FromBody] ExchangeRate tipoCambio)
         {

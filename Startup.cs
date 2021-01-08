@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace app_reto_bcp
 {
@@ -48,6 +50,7 @@ namespace app_reto_bcp
 
             services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase(databaseName: "TipoCambioBD"));
             services.AddControllers();
+            AddSwagger(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -60,6 +63,12 @@ namespace app_reto_bcp
 
             app.UseHttpsRedirection();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Tipo Cambio V1");
+            });
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -70,6 +79,31 @@ namespace app_reto_bcp
             });
         }
 
-        
+        private void AddSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $"API Tipo Cambio {groupName}",
+                    Version = groupName,
+                    Description = "API para el cambio de moneda",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Roly Tapara Huamnani",
+                        Email = "roly5882@gmail.com",
+                    }
+                });
+
+                List<string> xmlfiles = Directory.GetFiles(AppContext.BaseDirectory, "*.xml", SearchOption.TopDirectoryOnly).ToList();
+                xmlfiles.ForEach(xmlfile => options.IncludeXmlComments(xmlfile));
+
+                options.IgnoreObsoleteProperties();
+            });
+        }
+
+
     }
 }

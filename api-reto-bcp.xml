@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>api-reto-bcp</name>
+    </assembly>
+    <members>
+        <member name="M:app_reto_bcp.Controllers.ExchangeRateController.Get">
+            <summary>
+            Obtener todos los tipos de cambio disponibles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:app_reto_bcp.Controllers.ExchangeRateController.ExchangeRate(System.Double,System.String,System.String)">
+            <summary>
+            Obtener el tipo de cambio de una moneda origen y destino
+            </summary>
+            <param name="monto">Suma a cambiar</param>
+            <param name="monedaOrigen">Moneda Origen</param>
+            <param name="monedaDestino">Moneda Destino</param>
+            <returns></returns>
+        </member>
+        <member name="M:app_reto_bcp.Controllers.ExchangeRateController.Add(app_reto_bcp.Models.ExchangeRate)">
+            <summary>
+            Agregar un tipo de cambio
+            </summary>
+            <param name="tipoCambio"> Entidad de tipo de cambio</param>
+            <returns></returns>
+        </member>
+        <member name="M:app_reto_bcp.Controllers.ExchangeRateController.Edit(app_reto_bcp.Models.ExchangeRate)">
+            <summary>
+            Modificar un tipo de cambio
+            </summary>
+            <param name="tipoCambio"> Entidad de tipo de cambio a modificar</param>
+            <returns></returns>
+        </member>
+        <member name="M:app_reto_bcp.Controllers.LoginController.Login(app_reto_bcp.Models.UsuarioLogin)">
+            <summary>
+            Logueo para generar el token de acceso para el consumo de los API's
+            </summary>
+            <param name="usuarioLogin"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

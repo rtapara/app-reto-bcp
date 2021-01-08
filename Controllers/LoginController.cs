@@ -29,6 +29,11 @@ namespace app_reto_bcp.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Logueo para generar el token de acceso para el consumo de los API's
+        /// </summary>
+        /// <param name="usuarioLogin"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(UsuarioLogin usuarioLogin)
